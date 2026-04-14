@@ -3,8 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import type { Appointment, AppointmentStatus } from "@/lib/db";
 import { TIME_SLOTS } from "@/lib/timeSlots";
+import Image from "next/image";
 import { MiniCalendar } from "@/app/components/MiniCalendar";
 import { NavToggle } from "@/app/components/NavToggle";
+import logo from "@/app/assets/logo_crmedicitas.png";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -300,11 +302,7 @@ export default function AdminPage() {
       <header className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-navy rounded-xl flex items-center justify-center shadow-sm">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
+            <Image src={logo} alt="CRMedicitas" height={36} />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-base font-bold text-gray-800 leading-tight">Panel de Administración</h1>

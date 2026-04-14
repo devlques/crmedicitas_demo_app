@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { TIME_SLOTS } from "@/lib/timeSlots";
+import Image from "next/image";
 import { MiniCalendar } from "@/app/components/MiniCalendar";
 import { NavToggle } from "@/app/components/NavToggle";
+import logo from "@/app/assets/logo_crmedicitas.png";
 
 function todayISO(): string {
   return new Date().toISOString().split("T")[0];
@@ -163,10 +165,8 @@ export default function BookingPage() {
 
         {/* Header */}
         <div className="mb-10 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-navy rounded-2xl mb-4 shadow-md">
-            <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+          <div className="mb-4">
+            <Image src={logo} alt="CRMedicitas" height={56} className="mx-auto" />
           </div>
           <h1 className="text-3xl font-bold text-gray-800 tracking-tight">Reserva tu cita</h1>
           <p className="text-gray-400 mt-2 text-sm">Elige fecha, horario y completa tus datos.</p>
