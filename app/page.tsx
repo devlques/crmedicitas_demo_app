@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { TIME_SLOTS } from "@/lib/timeSlots";
 import { MiniCalendar } from "@/app/components/MiniCalendar";
+import { NavToggle } from "@/app/components/NavToggle";
 
 function todayISO(): string {
   return new Date().toISOString().split("T")[0];
@@ -124,8 +125,8 @@ export default function BookingPage() {
     return (
       <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="card p-10 max-w-md w-full text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
-            <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+            <svg className="w-8 h-8 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
@@ -133,7 +134,7 @@ export default function BookingPage() {
           <p className="text-gray-500 mb-1">
             <span className="font-semibold text-gray-700">{form.name}</span>, tu cita quedó agendada para el
           </p>
-          <p className="text-blue-600 font-semibold mb-1">{formatDate(form.date)}</p>
+          <p className="text-teal font-semibold mb-1">{formatDate(form.date)}</p>
           <p className="text-gray-500 mb-6">a las <span className="font-semibold text-gray-700">{form.timeSlot}</span></p>
           <p className="text-sm text-gray-400 mb-8">
             Confirmaremos tu cita por teléfono y/o correo electrónico
@@ -151,9 +152,18 @@ export default function BookingPage() {
     <main className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-xl mx-auto">
 
+        {/* Demo banner + nav */}
+        <div className="flex items-center justify-between mb-6">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold tracking-wide">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+            DEMO · Sistema de Citas
+          </span>
+          <NavToggle />
+        </div>
+
         {/* Header */}
         <div className="mb-10 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-2xl mb-4 shadow-md">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-navy rounded-2xl mb-4 shadow-md">
             <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
@@ -168,7 +178,7 @@ export default function BookingPage() {
           <div className="card p-6">
             <h2 className="text-sm font-semibold text-gray-700 mb-1">Selecciona una Fecha</h2>
             {form.date && (
-              <p className="text-xs text-blue-600 font-medium mb-3">{formatDate(form.date)}</p>
+              <p className="text-xs text-teal font-medium mb-3">{formatDate(form.date)}</p>
             )}
             {!form.date && <p className="text-xs text-gray-300 mb-3">Ninguna fecha seleccionada</p>}
             <MiniCalendar value={form.date} onChange={handleDateSelect} minDate={todayISO()} />
@@ -201,8 +211,8 @@ export default function BookingPage() {
                         isBooked
                           ? "bg-gray-50 text-gray-200 border-gray-100 cursor-not-allowed line-through"
                           : isSelected
-                          ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-[1.03]"
-                          : "bg-white text-gray-600 border-gray-200 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50",
+                          ? "bg-teal text-white border-teal shadow-sm scale-[1.03]"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-teal hover:text-teal-700 hover:bg-teal-50",
                       ].join(" ")}
                     >
                       {slot}

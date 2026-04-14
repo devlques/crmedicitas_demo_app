@@ -117,12 +117,12 @@ export function MiniCalendar({
                 className={[
                   "w-9 h-9 flex items-center justify-center rounded-full text-sm transition-all",
                   selected
-                    ? "bg-blue-600 text-white font-semibold shadow-sm scale-105"
+                    ? "bg-teal text-white font-semibold shadow-sm scale-105"
                     : isToday && !disabled
-                    ? "ring-2 ring-blue-400 text-blue-600 font-semibold hover:bg-blue-50"
+                    ? "ring-2 ring-teal text-teal-700 font-semibold hover:bg-teal-50"
                     : disabled
                     ? "text-gray-200 cursor-not-allowed"
-                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-700 cursor-pointer",
+                    : "text-gray-600 hover:bg-teal-50 hover:text-teal-700 cursor-pointer",
                 ].join(" ")}
               >
                 {day}

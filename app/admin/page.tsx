@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import type { Appointment, AppointmentStatus } from "@/lib/db";
 import { TIME_SLOTS } from "@/lib/timeSlots";
 import { MiniCalendar } from "@/app/components/MiniCalendar";
+import { NavToggle } from "@/app/components/NavToggle";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ function CreateModal({ onClose, onCreated }: { onClose: () => void; onCreated: (
                 <MiniCalendar value={form.date} onChange={(iso) => set("date", iso)} />
               </div>
               {form.date && (
-                <p className="text-xs text-blue-600 font-medium mt-1.5">{fmtDate(form.date)}</p>
+                <p className="text-xs text-teal font-medium mt-1.5">{fmtDate(form.date)}</p>
               )}
             </div>
 
@@ -214,11 +215,11 @@ function EditableCell({ value, onClick, disabled }: { value: string; onClick: ()
   return (
     <button
       onClick={onClick} disabled={disabled}
-      className="group flex items-center gap-1.5 text-gray-700 hover:text-blue-600 transition-colors disabled:opacity-40 disabled:cursor-default"
+      className="group flex items-center gap-1.5 text-gray-700 hover:text-teal transition-colors disabled:opacity-40 disabled:cursor-default"
       title="Haz clic para editar"
     >
       {value}
-      <span className="opacity-0 group-hover:opacity-100 text-blue-400 text-xs transition-opacity">✎</span>
+      <span className="opacity-0 group-hover:opacity-100 text-teal text-xs transition-opacity">✎</span>
     </button>
   );
 }
@@ -299,23 +300,30 @@ export default function AdminPage() {
       <header className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm">
+            <div className="w-9 h-9 bg-navy rounded-xl flex items-center justify-center shadow-sm">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h1 className="text-base font-bold text-gray-800 leading-tight">Panel de Citas</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-base font-bold text-gray-800 leading-tight">Panel de Administración</h1>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-600 text-[10px] font-semibold tracking-wide">
+                  <span className="w-1 h-1 rounded-full bg-amber-400 inline-block" />
+                  DEMO
+                </span>
+              </div>
               <p className="text-xs text-gray-400">{appointments.length} cita{appointments.length !== 1 ? "s" : ""} en total</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <NavToggle />
             <button onClick={fetchAppointments} className="btn-ghost flex items-center gap-1.5">
               <span className="text-base leading-none">↺</span> Actualizar
             </button>
             <button
               onClick={() => setShowCreate(true)}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 active:scale-[0.98] transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal text-white text-sm font-semibold hover:bg-teal-700 active:scale-[0.98] transition-all shadow-sm"
             >
               <span className="text-lg leading-none">+</span> Nueva Cita
             </button>
@@ -368,14 +376,16 @@ export default function AdminPage() {
               <option value="canceled">Cancelada</option>
             </select>
           </div>
-          {(dateFilter || statusFilter !== "all") && (
+          <div className="flex flex-col gap-1 justify-end">
+            <label className="text-xs font-medium text-transparent select-none">·</label>
             <button
               onClick={() => { setDateFilter(""); setStatusFilter("all"); }}
-              className="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1 mt-4"
+              disabled={!dateFilter && statusFilter === "all"}
+              className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-gray-200 text-xs text-gray-500 hover:border-red-300 hover:text-red-500 hover:bg-red-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:text-gray-500 disabled:hover:bg-transparent"
             >
-              ✕ Limpiar
+              ✕ Limpiar filtros
             </button>
-          )}
+          </div>
         </div>
 
         {/* Table */}
@@ -405,7 +415,7 @@ export default function AdminPage() {
                   return (
                     <tr
                       key={appt.id}
-                      className={`border-b border-gray-50 last:border-0 transition-colors hover:bg-blue-50/30 ${appt.status === "canceled" ? "opacity-50" : ""}`}
+                      className={`border-b border-gray-50 last:border-0 transition-colors hover:bg-teal-50/40 ${appt.status === "canceled" ? "opacity-50" : ""}`}
                     >
                       {/* Date / Time */}
                       <td className="px-5 py-4 whitespace-nowrap">
@@ -414,7 +424,7 @@ export default function AdminPage() {
                             <input
                               type="date" value={editing.value}
                               onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                              className="border border-blue-400 rounded-lg px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="border border-teal rounded-lg px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-teal"
                             />
                           </EditControls>
                         ) : (
@@ -426,7 +436,7 @@ export default function AdminPage() {
                               <select
                                 value={editing.value}
                                 onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                                className="border border-blue-400 rounded-lg px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="border border-teal rounded-lg px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-teal"
                               >
                                 {TIME_SLOTS.map((s) => <option key={s} value={s}>{s}</option>)}
                               </select>
@@ -451,7 +461,7 @@ export default function AdminPage() {
                         {appt.notes ? (
                           <button
                             onClick={() => setDetailAppt(appt)}
-                            className="text-left text-gray-500 truncate block w-full hover:text-blue-600 transition-colors text-xs"
+                            className="text-left text-gray-500 truncate block w-full hover:text-teal transition-colors text-xs"
                             title="Ver detalle completo"
                           >
                             {appt.notes}
@@ -476,14 +486,14 @@ export default function AdminPage() {
                               key={next}
                               disabled={isBusy}
                               onClick={() => patchAppointment(appt.id, { status: next })}
-                              className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-all disabled:opacity-40 whitespace-nowrap"
+                              className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:border-teal hover:text-teal-700 hover:bg-teal-50 transition-all disabled:opacity-40 whitespace-nowrap"
                             >
                               {isBusy ? "…" : label}
                             </button>
                           ))}
                           <button
                             onClick={() => setDetailAppt(appt)}
-                            className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                            className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:border-teal hover:text-teal-700 hover:bg-teal-50 transition-all"
                           >
                             Ver detalle
                           </button>

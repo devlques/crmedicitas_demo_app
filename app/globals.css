@@ -12,12 +12,12 @@
 @layer components {
   .input-base {
     @apply w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 bg-white
-           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+           focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent
            transition placeholder-gray-300;
   }
   .btn-primary {
-    @apply py-3 px-6 rounded-xl bg-blue-600 text-white font-semibold
-           hover:bg-blue-700 active:scale-[0.98] transition-all shadow-sm
+    @apply py-3 px-6 rounded-xl bg-teal text-white font-semibold
+           hover:bg-teal-700 active:scale-[0.98] transition-all shadow-sm
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-ghost {
