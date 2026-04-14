@@ -22,7 +22,10 @@ export function readAll(): Appointment[] {
   try {
     if (!fs.existsSync(DB_PATH)) return [];
     const data = JSON.parse(fs.readFileSync(DB_PATH, "utf-8"));
-    return data.map((a: Appointment) => ({ status: "pending", ...a }));
+    return data.map((a: Omit<Appointment, "status"> & { status?: AppointmentStatus }) => ({
+      status: "pending" as AppointmentStatus,
+      ...a,
+    }));
   } catch {
     return [];
   }
