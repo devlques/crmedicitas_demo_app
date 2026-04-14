@@ -1,0 +1,90 @@
+[
+  {
+    "status": "completed",
+    "id": 1776066101405,
+    "date": "2026-04-15",
+    "time": "9:00 AM",
+    "name": "María Garcia",
+    "phone": "88881234",
+    "email": "email@test.com",
+    "notes": "Cita revisión general.",
+    "created_at": "2026-04-13T07:41:41.405Z"
+  },
+  {
+    "status": "completed",
+    "id": 1776066175740,
+    "date": "2026-04-15",
+    "time": "9:30 AM",
+    "name": "Carlos Pérez",
+    "phone": "88888888",
+    "email": "email2@test.com",
+    "notes": "Consulta por alergias a medicamentos recientes",
+    "created_at": "2026-04-13T07:42:55.740Z"
+  },
+  {
+    "status": "canceled",
+    "id": 1776066288830,
+    "date": "2026-04-15",
+    "time": "3:00 PM",
+    "name": "Luis González",
+    "phone": "88887777",
+    "email": "email3@test.com",
+    "notes": "Experimento dolores de cabeza constantes y migraña.",
+    "created_at": "2026-04-13T07:44:48.830Z"
+  },
+  {
+    "status": "pending",
+    "id": 1776066436364,
+    "date": "2026-04-15",
+    "time": "3:30 PM",
+    "name": "Lucía Blanco",
+    "phone": "88889999",
+    "email": "email4@test.com",
+    "notes": "Mareos y molestias estomacales después de consumir alimentos en el extranjero.",
+    "created_at": "2026-04-13T07:47:16.364Z"
+  },
+  {
+    "status": "pending",
+    "id": 1776121997163,
+    "date": "2026-06-04",
+    "time": "11:00 AM",
+    "name": "María Garcia",
+    "phone": "88888888",
+    "email": "maria@email.com",
+    "notes": "Dolor de cabeza. Consulta general",
+    "created_at": "2026-04-13T23:13:17.163Z"
+  },
+  {
+    "status": "pending",
+    "id": 1776122232973,
+    "date": "2026-06-11",
+    "time": "2:00 PM",
+    "name": "María García",
+    "phone": "88881234",
+    "email": "email@test.com",
+    "notes": "Dolor de cuerpo, cita de control general.",
+    "created_at": "2026-04-13T23:17:12.973Z"
+  },
+  {
+    "status": "pending",
+    "id": 1776122608168,
+    "date": "2026-06-11",
+    "time": "9:30 AM",
+    "name": "María García",
+    "phone": "88881234",
+    "email": "maria@email.com",
+    "notes": "Cita de control general.",
+    "created_at": "2026-04-13T23:23:28.168Z"
+  },
+  {
+    "id": 1776122815023,
+    "date": "2026-06-10",
+    "time": "9:00 AM",
+    "name": "María García",
+    "phone": "88881234",
+    "email": "maria@email.com",
+    "notes": "Cita de control general.",
+    "status": "pending",
+    "created_at": "2026-04-13T23:26:55.023Z"
+  }
+]
