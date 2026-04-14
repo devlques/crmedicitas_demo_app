@@ -5,8 +5,6 @@ import { TIME_SLOTS } from "@/lib/timeSlots";
 const VALID_STATUSES: AppointmentStatus[] = ["pending", "completed", "canceled"];
 
 // ── PATCH /api/appointments/:id ────────────────────────────────────────────
-// Accepts any combination of { status, date, time }.
-// Only the fields that are sent get updated.
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -35,14 +33,13 @@ export async function PATCH(
     );
   }
 
-  const all   = readAll();
+  const all   = await readAll();
   const index = all.findIndex((a) => a.id === id);
 
   if (index === -1) {
     return NextResponse.json({ error: "Cita no encontrada." }, { status: 404 });
   }
 
-  // Check for double-booking when date or time changes
   if (body.date !== undefined || body.time !== undefined) {
     const newDate = body.date ?? all[index].date;
     const newTime = body.time ?? all[index].time;
@@ -63,7 +60,7 @@ export async function PATCH(
   if (body.time   !== undefined) updates.time   = body.time;
 
   all[index] = { ...all[index], ...updates };
-  saveAll(all);
+  await saveAll(all);
 
   return NextResponse.json(all[index]);
 }

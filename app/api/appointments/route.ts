@@ -2,13 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { readAll, saveAll, type Appointment } from "@/lib/db";
 
 // ── GET /api/appointments ──────────────────────────────────────────────────
-// Returns all appointments ordered by date + time.
-// Optional: ?date=YYYY-MM-DD to filter by a specific day.
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get("date");
 
-  const all = readAll();
+  const all = await readAll();
   const result = date ? all.filter((a) => a.date === date) : all;
 
   result.sort(
@@ -19,13 +17,10 @@ export async function GET(request: NextRequest) {
 }
 
 // ── POST /api/appointments ─────────────────────────────────────────────────
-// Creates a new appointment.
-// Returns 400 for missing fields, 409 for a double-booking, 201 on success.
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { date, time, name, phone, email, notes } = body;
 
-  // 1. Validate all fields
   const validationErrors: string[] = [];
 
   if (!date || !time) validationErrors.push("Fecha y horario son obligatorios.");
@@ -57,9 +52,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: validationErrors[0] }, { status: 400 });
   }
 
-  const all = readAll();
+  const all = await readAll();
 
-  // 2. Prevent double booking
   const conflict = all.find((a) => a.date === date && a.time === time);
   if (conflict) {
     return NextResponse.json(
@@ -68,7 +62,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // 3. Create and persist the new appointment
   const newAppointment: Appointment = {
     id: Date.now(),
     date,
@@ -81,7 +74,7 @@ export async function POST(request: NextRequest) {
     created_at: new Date().toISOString(),
   };
 
-  saveAll([...all, newAppointment]);
+  await saveAll([...all, newAppointment]);
 
   return NextResponse.json(newAppointment, { status: 201 });
 }

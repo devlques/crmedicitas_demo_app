@@ -1,6 +1,6 @@
 [
   {
-    "status": "completed",
+    "status": "pending",
     "id": 1776066101405,
     "date": "2026-04-15",
     "time": "9:00 AM",
@@ -11,7 +11,7 @@
     "created_at": "2026-04-13T07:41:41.405Z"
   },
   {
-    "status": "completed",
+    "status": "canceled",
     "id": 1776066175740,
     "date": "2026-04-15",
     "time": "9:30 AM",
@@ -33,7 +33,7 @@
     "created_at": "2026-04-13T07:44:48.830Z"
   },
   {
-    "status": "pending",
+    "status": "completed",
     "id": 1776066436364,
     "date": "2026-04-15",
     "time": "3:30 PM",
@@ -44,7 +44,7 @@
     "created_at": "2026-04-13T07:47:16.364Z"
   },
   {
-    "status": "pending",
+    "status": "canceled",
     "id": 1776121997163,
     "date": "2026-06-04",
     "time": "11:00 AM",
@@ -77,6 +77,7 @@
     "created_at": "2026-04-13T23:23:28.168Z"
   },
   {
+    "status": "pending",
     "id": 1776122815023,
     "date": "2026-06-10",
     "time": "9:00 AM",
@@ -84,7 +85,17 @@
     "phone": "88881234",
     "email": "maria@email.com",
     "notes": "Cita de control general.",
-    "status": "pending",
     "created_at": "2026-04-13T23:26:55.023Z"
+  },
+  {
+    "status": "completed",
+    "id": 1776202716221,
+    "date": "2026-04-14",
+    "time": "9:30 AM",
+    "name": "Julio Quirós Solano",
+    "phone": "22228888",
+    "email": "julio@email.com",
+    "notes": "Infección de garganta",
+    "created_at": "2026-04-14T21:38:36.221Z"
   }
 ]
