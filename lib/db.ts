@@ -52,7 +52,7 @@ async function getRedis() {
 // ── Public API ─────────────────────────────────────────────────────────────
 
 export async function readAll(): Promise<Appointment[]> {
-  if (!process.env.REDIS_URL) return readFile();
+  if (process.env.NODE_ENV !== "production") return readFile();
 
   const redis = await getRedis();
   const raw   = await redis.get(KEY);
@@ -62,7 +62,7 @@ export async function readAll(): Promise<Appointment[]> {
 }
 
 export async function saveAll(appointments: Appointment[]): Promise<void> {
-  if (!process.env.REDIS_URL) { writeFile(appointments); return; }
+  if (process.env.NODE_ENV !== "production") { writeFile(appointments); return; }
 
   const redis = await getRedis();
   await redis.set(KEY, JSON.stringify(appointments));
